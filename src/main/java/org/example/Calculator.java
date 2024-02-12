@@ -68,7 +68,7 @@ public class Calculator {
                     System.out.print("Enter two number : ");
                     number1 = scanner.nextDouble();
                     number2 = scanner.nextDouble();
-                    System.out.println("Sum  of "+number1+"ans "+number2+"is : " + calculator.sum(number1,number2));
+                    System.out.println("Sum  of "+number1+"ans "+number2+"is : " + calculator.add(number1,number2));
                     System.out.println("\n");
 
                     break;
@@ -128,7 +128,7 @@ public class Calculator {
         { facto *= i;   }
         return  facto;
     }
-    public double(double n1,double n2)
+    public double add(double n1,double n2)
     {
       double sum_i=n1+n2;
     return sum_i;
