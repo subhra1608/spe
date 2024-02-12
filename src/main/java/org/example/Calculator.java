@@ -130,8 +130,8 @@ public class Calculator {
     }
     public double(double n1,double n2)
     {
-      double sum=n1+n2;
-    return sum;
+      double sum_i=n1+n2;
+    return sum_i;
 }
 
 // Testing Webhook working or not
