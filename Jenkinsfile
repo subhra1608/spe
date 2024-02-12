@@ -1,52 +1,51 @@
-pipeline{
+pipeline {
+    agent any
 
-    environment{
-        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+    environment {
+        DOCKER_IMAGE_NAME = 'calculator'
+        GITHUB_REPO_URL = 'https://github.com/subhra1608/calculator.git'
+    }
 
-	}
-
-	agent any
-
-    stages{
-        stage('Git clone'){
-            steps{
-                git branch: 'master', url: 'https://github.com/subhra1608/calculator.git'
-            }
-        }
-    	stage('Maven Build'){
-        	steps{
-            	echo 'This is job building stage'
-            	//maven clean and install command to build the target folder
-            	sh "mvn clean install"
-            }
-        }
-        stage('Build Docker Image') {
-              steps {
-                sh 'docker build -t docker685/jenkins-docker-hub .'
-              }
-            }
-        stage('Login into DockerHub') {
-              steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
-              }
-            }
-        stage('Push to DockerHub') {
-              steps {
-                sh 'docker push docker685/jenkins-docker-hub'
-              }
-            }
-        stage('Delete Docker Image from Local'){
-                steps {
-                    sh 'docker rmi docker685/jenkins-docker-hub'
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    // Checkout the code from the GitHub repository
+                    git branch: 'master', url: "${GITHUB_REPO_URL}"
                 }
             }
+        }
 
-
-        stage("Ansible Deploy"){
-            steps{
-//                 ansiblePlaybook colorized: true, disableHostKeyChecking: true, installation: 'Ansible', inventory: 'inventory', playbook: 'plybk.yml'
-                    sh "ansible-playbook -i inventory plybk.yml"
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Build Docker image
+                    docker.build("${DOCKER_IMAGE_NAME}", '.')
+                }
             }
         }
+
+        stage('Push Docker Images') {
+            steps {
+                script{
+                    docker.withRegistry('', 'DockerHubCred') {
+                    sh 'docker tag calculator subhra1608/calculator:latest'
+                    sh 'docker push subhra1608/calculator'
+                    }
+                 }
+            }
+        }
+
+   stage('Run Ansible Playbook') {
+            steps {
+                script {
+                    ansiblePlaybook(
+                        playbook: 'deploy.yml',
+                        inventory: 'inventory'
+                     )
+                }
+            }
+        }
+
     }
 }
