@@ -15,7 +15,13 @@ pipeline {
                 }
             }
         }
-
+        stage('Maven Build'){
+        	steps{
+            	echo 'This is job building stage'
+            	//maven clean and install command to build the target folder
+            	sh "mvn clean install"
+            }
+        }
         stage('Build Docker Image') {
             steps {
                 script {
