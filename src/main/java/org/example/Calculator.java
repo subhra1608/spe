@@ -68,7 +68,7 @@ public class Calculator {
                     System.out.print("Enter two number : ");
                     number1 = scanner.nextDouble();
                     number2 = scanner.nextDouble();
-                    System.out.println("Sum  of "+number1+"ans "+number2+"is : " + calculator.add(number1,number2));
+                    System.out.println("Sum  of "+number1+" and "+number2+"is : " + calculator.add(number1,number2));
                     System.out.println("\n");
 
                     break;
