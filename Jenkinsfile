@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_IMAGE_NAME = 'calculator'
-        GITHUB_REPO_URL = 'https://github.com/subhra1608/calculator.git'
+        GITHUB_REPO_URL = 'https://github.com/subhra1608/spe.git'
     }
 
     stages {
