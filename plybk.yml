@@ -1,15 +1,22 @@
 ---
-- name: Pull docker image of Calculator
-  hosts: all
+- name: Pull Docker Image from Docker Hub
+  hosts: 172.16.144.231
+  remote_user: subhra1608
+  become: false
   tasks:
+    - name: Pull Docker Image
+      docker_image:
+        name: "subhra1608/calculator"
+        source: pull
+      register: docker_pull_result
 
-    - name: Start docker service
+    - name: Display Docker Pull Result
+      debug:
+        var: docker_pull_result
+        
+    - name: Start Docker service
       service:
         name: docker
         state: started
-
-    - name: pull docker image
-      shell: docker pull docker685/jenkins-docker-hub
-
-    - name: running container
-      shell: docker run -it -d docker685/jenkins-docker-hub
+    - name: Running container
+      shell: docker run -it -d --name calculator subhra1608/calculator
