@@ -100,7 +100,7 @@ public class Calculator {
                 result = Math.log(number1);
             }
         } catch (ArithmeticException error) {
-            System.out.println("[EXCEPTION - LOG] - Cannot find log of negative numbers " + error.getLocalizedMessage());
+            System.out.println("[EXCEPTION] - Cannot find log of negative numbers " + error.getLocalizedMessage());
         }
         return result;
     }
