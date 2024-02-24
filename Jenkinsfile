@@ -41,7 +41,11 @@ pipeline {
                  }
             }
         }
-
+        stage('Delete Docker Image from Local'){
+                steps {
+                    sh 'docker rmi subhra1608/calculator'
+                }
+            }
    stage('Run Ansible Playbook') {
             steps {
                 script {
