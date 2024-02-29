@@ -41,7 +41,7 @@ public class Calculator {
                     System.out.println("Square root of "+number1+" is : " + calculator.squareRoot(number1));
                     System.out.println("\n");
 
-
+                  // scientific calculator
                     break;
                 case 3:
                     // Power
