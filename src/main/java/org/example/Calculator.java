@@ -23,6 +23,7 @@ public class Calculator {
             } catch (InputMismatchException error) {
                 return;
             }
+            //Test commit
 
             switch (choice) {
                 case 1:
