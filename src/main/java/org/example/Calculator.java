@@ -60,7 +60,7 @@ public class Calculator {
                     System.out.println("\n");
 
                     break;
-                    //Subhra
+                    //Subhra Jyoti
                 case 5:
                     // Sum just for checking
                     System.out.print("Enter two number : ");
