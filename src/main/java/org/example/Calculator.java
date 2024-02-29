@@ -23,7 +23,7 @@ public class Calculator {
             } catch (InputMismatchException error) {
                 return;
             }
-
+            //optionsdisplayed
             switch (choice) {
                 case 1:
                     // Factorial
