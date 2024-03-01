@@ -13,10 +13,11 @@
     - name: Display Docker Pull Result
       debug:
         var: docker_pull_result
-        name: Start Docker service
+
+    - name: Start Docker service
       service:
         name: docker
         state: started
 
     - name: Running container
-      shell: docker run -it -d --name calculator4 subhra1608/calci
+      shell: docker run -it -d --name calculator4 subhra1608/calculator
